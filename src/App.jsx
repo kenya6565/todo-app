@@ -86,6 +86,13 @@ export const App = () => {
 
   const handleSubmit = (index) => {};
 
+  const onClickUpdate = (index, newTodoText) => {
+    const newIncompleteTodos = createNewArray(completeTodos);
+    // index番目の要素をnewTodotextで上書き
+    newIncompleteTodos.splice(index, 1, newTodoText);
+    setIncompleteTodos(newIncompleteTodos);
+  };
+
   return (
     <>
       <InputTodo
@@ -107,6 +114,7 @@ export const App = () => {
         onChange={onChangeTodoText}
         editText={editText}
         onEdit={onEditTodoText}
+        onClickUpdate={onClickUpdate}
       />
       <CompleteTodo completeTodos={completeTodos} onClickBack={onClickBack} />
     </>

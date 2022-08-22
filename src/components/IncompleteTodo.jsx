@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 
 const TodoItem = (props) => {
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+  const [editText, setEditText] = useState("");
 
-  const {
-    todo,
-    index,
-    onClickComplete,
-    onClickDelete,
-    onClickEdit,
-    handleSubmit,
-    editText,
-    onEdit,
-  } = props;
+  const { todo, index, onClickComplete, onClickDelete, onClickUpdate } = props;
   return editMode ? (
     <div className="list-row">
       <div>
-        <input value={editText} onChange={onEdit} />
-        <button onClick={handleSubmit(index)}>更新</button>
+        <input
+          value={editText}
+          onChange={(event) => {
+            setEditText(event.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            onClickUpdate(index, editText);
+            setEditMode(false);
+          }}
+        >
+          更新
+        </button>
       </div>
       <button
         onClick={() => {
@@ -33,6 +37,7 @@ const TodoItem = (props) => {
       <button
         onClick={() => {
           setEditMode(true);
+          setEditText(todo);
         }}
       >
         編集
@@ -52,9 +57,8 @@ export const IncompleteTodo = (props) => {
     onClickComplete,
     onClickDelete,
     onClickEdit,
-    handleSubmit,
-    editText,
     onEdit,
+    onClickUpdate,
   } = props;
 
   return (
@@ -70,9 +74,8 @@ export const IncompleteTodo = (props) => {
               onClickComplete={onClickComplete}
               onClickDelete={onClickDelete}
               onClickEdit={onClickEdit}
-              handleSubmit={handleSubmit}
-              editText={editText}
               onEdit={onEdit}
+              onClickUpdate={onClickUpdate}
             />
           );
         })}
