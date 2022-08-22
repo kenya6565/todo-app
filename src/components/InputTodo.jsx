@@ -1,6 +1,4 @@
 import React from "react";
-import { IncompleteTodo } from "./IncompleteTodo";
-import { createNewArray } from "/src/App";
 
 const style = {
   backgroundColor: "#c1ffff",
@@ -8,7 +6,7 @@ const style = {
   height: "30px",
   borderRadius: "8px",
   padding: "8px",
-  margin: "8px"
+  margin: "8px",
 };
 
 export const InputTodo = (props) => {
